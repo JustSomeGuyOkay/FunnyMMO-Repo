@@ -99,6 +99,8 @@ namespace Intersect
 
         public static List<string> ToolTypes => Instance.EquipmentOpts.ToolTypes;
 
+        public static Dictionary<string, string> CosmeticMapping => Instance.EquipmentOpts.CosmeticMapping;
+
         public static List<string> AnimatedSprites => Instance._animatedSprites;
 
         public static int RegenTime => Instance.CombatOpts.RegenTime;

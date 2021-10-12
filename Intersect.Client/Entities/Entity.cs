@@ -983,7 +983,15 @@ namespace Intersect.Client.Entities
                 for (var z = 0; z < Options.PaperdollOrder[Dir].Count; z++)
                 {
                     var paperdoll = Options.PaperdollOrder[Dir][z];
-                    var equipSlot = Options.EquipmentSlots.IndexOf(paperdoll);
+                    int equipSlot;
+                    if (Options.CosmeticMapping.ContainsKey(paperdoll) && Equipment[Options.EquipmentSlots.IndexOf(Options.CosmeticMapping[paperdoll])] != Guid.Empty)
+                    {
+                        equipSlot = Options.EquipmentSlots.IndexOf(Options.CosmeticMapping[paperdoll]);
+                    }
+                    else
+                    {
+                        equipSlot = Options.EquipmentSlots.IndexOf(paperdoll);
+                    }
 
                     //Check for player
                     if (paperdoll == "Player")

@@ -720,6 +720,10 @@ namespace Intersect.Editor.Forms.Editors.Events
                     tmpCommand = new ShowPlayerCommand();
 
                     break;
+                case EventCommandType.DropItem:
+                    tmpCommand = new DropItemCommand();
+
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -1296,6 +1300,10 @@ namespace Intersect.Editor.Forms.Editors.Events
                     break;
                 case EventCommandType.EndQuest:
                     cmdWindow = new EventCommandEndQuest((EndQuestCommand) command, this);
+
+                    break;
+                case EventCommandType.DropItem:
+                    cmdWindow = new EventCommandDropItem(this, mCurrentMap, MyEvent, (DropItemCommand)command);
 
                     break;
                 default:

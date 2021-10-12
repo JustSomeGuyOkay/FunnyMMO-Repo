@@ -214,7 +214,7 @@
 
         //Player Label
         PlayerLabel,
-
+        DropItem,
     }
 
 }

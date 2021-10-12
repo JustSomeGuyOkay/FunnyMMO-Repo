@@ -1027,6 +1027,74 @@ namespace Intersect.Editor.Forms.Editors.Events
             );
         }
 
+        private static string GetCommandText(DropItemCommand command, MapInstance map)
+        {
+            if (command == null)
+            {
+                return null;
+            }
+
+            if (command.MapId != Guid.Empty)
+            {
+                foreach (var orderedMap in MapList.OrderedMaps)
+                {
+                    if (orderedMap == null)
+                    {
+                        continue;
+                    }
+
+                    if (orderedMap.MapId == command.MapId)
+                    {
+                        return Strings.EventCommandList.dropitem.ToString(
+                            ItemBase.GetName(command.ItemId),
+                            Strings.EventCommandList.spawnonmap.ToString(
+                                orderedMap.Name, command.X, command.Y, Strings.Directions.dir?[(sbyte)command.Dir]
+                            )
+                        );
+                    }
+                }
+
+                return Strings.EventCommandList.dropitem.ToString(
+                    ItemBase.GetName(command.ItemId),
+                    Strings.EventCommandList.spawnonmap.ToString(
+                        Strings.EventCommandList.mapnotfound, command.X, command.Y, Strings.Directions.dir[command.Dir]
+                    )
+                );
+            }
+
+            var retain = Strings.EventCommandList.False;
+
+            //TODO: Possibly bugged -- test this.
+            if (Convert.ToBoolean(command.Dir))
+            {
+                retain = Strings.EventCommandList.True;
+            }
+
+            if (command.EntityId == Guid.Empty)
+            {
+                return Strings.EventCommandList.dropitem.ToString(
+                    ItemBase.GetName(command.ItemId),
+                    Strings.EventCommandList.spawnonplayer.ToString(command.X, command.Y, retain)
+                );
+            }
+
+            if (map.LocalEvents.TryGetValue(command.EntityId, out var localEvent))
+            {
+                return Strings.EventCommandList.dropitem.ToString(
+                    ItemBase.GetName(command.ItemId),
+                    Strings.EventCommandList.spawnonevent.ToString(localEvent.Name, command.X, command.Y, retain)
+                );
+            }
+
+            return Strings.EventCommandList.dropitem.ToString(
+                ItemBase.GetName(command.ItemId),
+                Strings.EventCommandList.spawnonevent.ToString(
+                    Strings.EventCommandList.deletedevent, command.X, command.Y, retain
+                )
+            );
+        }
+
+
         //Set Variable Modification Texts
         private static string GetVariableModText(SetVariableCommand command, VariableMod mod)
         {

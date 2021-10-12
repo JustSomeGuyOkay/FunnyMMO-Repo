@@ -19,15 +19,20 @@ namespace Intersect.Config
             "Armor",
             "Weapon",
             "Shield",
-            "Boots",
+            "Boots"
         };
-
+        
         public List<string> ToolTypes = new List<string>()
         {
             "Axe",
             "Pickaxe",
             "Shovel",
             "Fishing Rod"
+        };
+
+        public Dictionary<string, string> CosmeticMapping = new Dictionary<string, string>()
+        {
+
         };
 
         public int WeaponSlot = 2;
@@ -37,6 +42,7 @@ namespace Intersect.Config
         {
             Slots.Clear();
             ToolTypes.Clear();
+            CosmeticMapping.Clear();
         }
 
         [OnDeserialized]

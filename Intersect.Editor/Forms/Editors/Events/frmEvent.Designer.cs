@@ -131,15 +131,17 @@ namespace Intersect.Editor.Forms.Editors.Events
             treeNode49,
             treeNode50});
             System.Windows.Forms.TreeNode treeNode52 = new System.Windows.Forms.TreeNode("Wait...");
-            System.Windows.Forms.TreeNode treeNode53 = new System.Windows.Forms.TreeNode("Etc", new System.Windows.Forms.TreeNode[] {
-            treeNode52});
-            System.Windows.Forms.TreeNode treeNode54 = new System.Windows.Forms.TreeNode("Open Bank");
-            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Open Shop");
-            System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("Open Crafting Station");
-            System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("Shop and Bank", new System.Windows.Forms.TreeNode[] {
-            treeNode54,
+            System.Windows.Forms.TreeNode treeNode53 = new System.Windows.Forms.TreeNode("Drop Item");
+            System.Windows.Forms.TreeNode treeNode54 = new System.Windows.Forms.TreeNode("Etc", new System.Windows.Forms.TreeNode[] {
+            treeNode52,
+            treeNode53});
+            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Open Bank");
+            System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("Open Shop");
+            System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("Open Crafting Station");
+            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("Shop and Bank", new System.Windows.Forms.TreeNode[] {
             treeNode55,
-            treeNode56});
+            treeNode56,
+            treeNode57});
             this.lblName = new System.Windows.Forms.Label();
             this.txtEventname = new DarkUI.Controls.DarkTextBox();
             this.grpEntityOptions = new DarkUI.Controls.DarkGroupBox();
@@ -948,19 +950,22 @@ namespace Intersect.Editor.Forms.Editors.Events
             treeNode52.Name = "wait";
             treeNode52.Tag = "34";
             treeNode52.Text = "Wait...";
-            treeNode53.Name = "etc";
-            treeNode53.Text = "Etc";
-            treeNode54.Name = "openbank";
-            treeNode54.Tag = "35";
-            treeNode54.Text = "Open Bank";
-            treeNode55.Name = "openshop";
-            treeNode55.Tag = "36";
-            treeNode55.Text = "Open Shop";
-            treeNode56.Name = "opencraftingstation";
-            treeNode56.Tag = "37";
-            treeNode56.Text = "Open Crafting Station";
-            treeNode57.Name = "shopandbank";
-            treeNode57.Text = "Shop and Bank";
+            treeNode53.Name = "dropitem";
+            treeNode53.Tag = "51";
+            treeNode53.Text = "Drop Item";
+            treeNode54.Name = "etc";
+            treeNode54.Text = "Etc";
+            treeNode55.Name = "openbank";
+            treeNode55.Tag = "35";
+            treeNode55.Text = "Open Bank";
+            treeNode56.Name = "openshop";
+            treeNode56.Tag = "36";
+            treeNode56.Text = "Open Shop";
+            treeNode57.Name = "opencraftingstation";
+            treeNode57.Tag = "37";
+            treeNode57.Text = "Open Crafting Station";
+            treeNode58.Name = "shopandbank";
+            treeNode58.Text = "Shop and Bank";
             this.lstCommands.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode5,
             treeNode13,
@@ -968,8 +973,8 @@ namespace Intersect.Editor.Forms.Editors.Events
             treeNode39,
             treeNode47,
             treeNode51,
-            treeNode53,
-            treeNode57});
+            treeNode54,
+            treeNode58});
             this.lstCommands.Size = new System.Drawing.Size(445, 440);
             this.lstCommands.TabIndex = 2;
             this.lstCommands.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.lstCommands_NodeMouseDoubleClick);

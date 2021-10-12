@@ -1169,6 +1169,101 @@ namespace Intersect.Server.Entities.Events
             player.CompleteQuest(command.QuestId, command.SkipCompletionEvent);
         }
 
+        //Drop Item Command
+        private static void ProcessCommand(
+            DropItemCommand command,
+            Player player,
+            Event instance,
+            CommandInstance stackInfo,
+            Stack<CommandInstance> callStack
+        )
+        {
+
+            var itemId = command.ItemId;
+            var mapId = command.MapId;
+            //var itemQuantity = command.ItemQuantity;
+            var itemQuantity = 1; //TBI
+            var tileX = 0;
+            var tileY = 0;
+            var direction = (byte)Directions.Up;
+            var targetEntity = (Entity)player;
+            if (mapId != Guid.Empty)
+            {
+                tileX = command.X;
+                tileY = command.Y;
+                direction = command.Dir;
+            }
+            else
+            {
+                if (command.EntityId != Guid.Empty)
+                {
+                    foreach (var evt in player.EventLookup)
+                    {
+                        if (evt.Value.MapId != instance.MapId)
+                        {
+                            continue;
+                        }
+
+                        if (evt.Value.BaseEvent.Id == command.EntityId)
+                        {
+                            targetEntity = evt.Value.PageInstance;
+
+                            break;
+                        }
+                    }
+                }
+
+                if (targetEntity != null)
+                {
+                    int xDiff = command.X;
+                    int yDiff = command.Y;
+                    if (command.Dir == 1)
+                    {
+                        var tmp = 0;
+                        switch (targetEntity.Dir)
+                        {
+                            case (int)Directions.Down:
+                                yDiff *= -1;
+                                xDiff *= -1;
+
+                                break;
+                            case (int)Directions.Left:
+                                tmp = yDiff;
+                                yDiff = xDiff;
+                                xDiff = tmp;
+
+                                break;
+                            case (int)Directions.Right:
+                                tmp = yDiff;
+                                yDiff = xDiff;
+                                xDiff = -tmp;
+
+                                break;
+                        }
+
+                        direction = (byte)targetEntity.Dir;
+                    }
+
+                    mapId = targetEntity.MapId;
+                    tileX = (byte)(targetEntity.X + xDiff);
+                    tileY = (byte)(targetEntity.Y + yDiff);
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            ////////
+            var itemBase = ItemBase.Get(command.ItemId);
+            if (itemBase == null)
+            {
+                return;
+            }
+            var map = MapInstance.Get(mapId);
+            map?.SpawnItem(tileX, tileY, new Item(itemId, itemQuantity), 1, player.Id);
+        }
+
         private static Stack<CommandInstance> LoadLabelCallstack(string label, EventPage currentPage)
         {
             var newStack = new Stack<CommandInstance>();

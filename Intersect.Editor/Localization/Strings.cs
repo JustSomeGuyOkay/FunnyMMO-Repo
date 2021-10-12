@@ -1413,6 +1413,8 @@ Tick timer saved in server config.json.";
 
             public static LocalizedString changeitems = @"Change Player Items [{00}]";
 
+            public static LocalizedString dropitem = @"Drop Item {00} {01}";
+
             public static LocalizedString equipitem = @"Equip Player Item [{00}]";
 
             public static LocalizedString changespells = @"Change Player Spells [{00}]";
@@ -1720,6 +1722,7 @@ Tick timer saved in server config.json.";
                 {"startquest", @"Start Quest"},
                 {"stopsounds", @"Stop Sounds"},
                 {"wait", @"Wait..."},
+                {"dropitem", @"Drop Item"},
                 {"waitmoveroute", @"Wait for Route Completion"},
                 {"warpplayer", @"Warp Player"},
                 {"hideplayer", @"Hide Player"},
@@ -2727,6 +2730,35 @@ Tick timer saved in server config.json.";
             public static LocalizedString okay = @"Ok";
 
             public static LocalizedString title = @"Warp";
+
+        }
+
+        public struct EventDropItem
+        {
+
+            public static LocalizedString cancel = @"Cancel";
+
+            public static LocalizedString entity = @"Entity:";
+
+            public static LocalizedString item = @"Item:";
+
+            public static LocalizedString okay = @"Ok";
+
+            public static LocalizedString player = @"Player";
+
+            public static LocalizedString relativelocation = @"Relative Location:";
+
+            public static LocalizedString spawnrelative = @"Relative to Entity Direction";
+
+            public static LocalizedString spawntype = @"Spawn Type:";
+
+            public static LocalizedString spawntype0 = @"Specific Tile";
+
+            public static LocalizedString spawntype1 = @"On/Around Entity";
+
+            public static LocalizedString This = @"[THIS EVENT]";
+
+            public static LocalizedString title = @"Drop Item";
 
         }
 
